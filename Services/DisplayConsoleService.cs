@@ -48,6 +48,7 @@ namespace dotnet_parking_system.Services
                         break;
 
                     case 4:
+                        CheckAvailableLot();
                         break;
 
                     case 5:
@@ -79,6 +80,16 @@ namespace dotnet_parking_system.Services
             string message = parkingSystemService.checkIn(name, noRegistration, nameVehicleType, color);
 
             Console.WriteLine("=============================");
+            Console.WriteLine(message);
+            Console.WriteLine("=============================");
+        }
+
+        public void CheckAvailableLot()
+        {
+            Console.WriteLine("=============================");
+            Console.WriteLine("Check Available Lot");
+            Console.WriteLine("=============================");
+            string message = parkingSystemService.CheckAvailableLot();
             Console.WriteLine(message);
             Console.WriteLine("=============================");
         }

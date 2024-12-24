@@ -1,3 +1,4 @@
+using System.Text;
 using dotnet_parking_system.Models;
 
 namespace dotnet_parking_system.Services
@@ -34,6 +35,19 @@ namespace dotnet_parking_system.Services
             {
                 return "Failed to park vehicle";
             }
+        }
+
+        public string CheckAvailableLot()
+        {
+            List<int> availableLot = GetAllEmptyParkingLot();
+            StringBuilder message = new StringBuilder();
+            
+            foreach (var item in availableLot)
+            {
+                message.Append($"Parking lot at {item} is empty. \n");
+            }
+
+            return message.ToString();
         }
 
 
