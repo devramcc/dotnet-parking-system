@@ -42,6 +42,7 @@ namespace dotnet_parking_system.Services
                         break;
 
                     case 2:
+                        checkOut();
                         break;
 
                     case 3:
@@ -77,9 +78,22 @@ namespace dotnet_parking_system.Services
             string nameVehicleType = Console.ReadLine();
             Console.Write("Enter Vehicle Color : ");
             string color = Console.ReadLine();
-            string message = parkingSystemService.checkIn(name, noRegistration, nameVehicleType, color);
+            string message = parkingSystemService.CheckIn(name, noRegistration, nameVehicleType, color);
 
             Console.WriteLine("=============================");
+            Console.WriteLine(message);
+            Console.WriteLine("=============================");
+        }
+
+        public void checkOut()
+        {
+            Console.WriteLine("=============================");
+            Console.WriteLine("Check Out Vehicle");
+            Console.WriteLine("=============================");
+
+            Console.Write("Enter Parking Lot Index Number : ");
+            int indexParkingLot = int.Parse(Console.ReadLine());
+            string message = parkingSystemService.CheckOut(indexParkingLot);
             Console.WriteLine(message);
             Console.WriteLine("=============================");
         }

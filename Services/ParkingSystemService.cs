@@ -12,9 +12,8 @@ namespace dotnet_parking_system.Services
             ParkedVehicles = new ParkedVehicle[parkingLot];
         }
 
-        public string checkIn(string name, string noRegistration, string nameVehicleType, string color)
+        public string CheckIn(string name, string noRegistration, string nameVehicleType, string color)
         {
-            string message;
             Vehicle vehicle = new Vehicle
             {
                 Name = name,
@@ -22,7 +21,7 @@ namespace dotnet_parking_system.Services
                 VehicleType = GetVehicleTypeByName(nameVehicleType),
                 Color = color
             };
-        
+
             if (getFirstEmptyParkingLot() != null)
             {
                 int emptyLot = (int)getFirstEmptyParkingLot();
@@ -37,11 +36,27 @@ namespace dotnet_parking_system.Services
             }
         }
 
+        public string CheckOut(int indexParkingLot)
+        {
+            if (ParkedVehicles[indexParkingLot] == null)
+            {
+                return "Vehicle is never parked (not exist)";
+            }
+            DateTime parkedAt = ParkedVehicles[indexParkingLot].ParkedAt;
+            TimeSpan timeElapsed = DateTime.Now - parkedAt;
+
+            int hours = timeElapsed.Hours;
+            int minutes = timeElapsed.Minutes;
+
+            ParkedVehicles[indexParkingLot] = null;
+            return $"Vehicle is checked out {hours} hours and {minutes} minutes after being parked.";
+        }
+
         public string CheckAvailableLot()
         {
             List<int> availableLot = GetAllEmptyParkingLot();
             StringBuilder message = new StringBuilder();
-            
+
             foreach (var item in availableLot)
             {
                 message.Append($"Parking lot at {item} is empty. \n");
