@@ -7,10 +7,13 @@ namespace dotnet_parking_system
     {
         static void Main(string[] args)
         {
-            ParkingSystem parkingSystem = new ParkingSystem(6);
-            ParkedVehicle[] parkedVehicles = parkingSystem.AddVehicle();
-            Console.WriteLine(parkedVehicles[0].ParkedAt);
-            Console.WriteLine(parkedVehicles[0].Vehicle.ToString());
+            // ParkingSystemService parkingSystemService = new ParkingSystemService(6);
+            // ParkedVehicle[] parkedVehicles = parkingSystemService.AddVehicle();
+            // Console.WriteLine(parkedVehicles[3].ParkedAt);
+            // Console.WriteLine(parkedVehicles[3].Vehicle.ToString());
+            // Console.WriteLine(string.Join(", ", parkingSystemService.GetAllEmptyParkingLot()));
+            DisplayConsoleService displayConsoleService = new DisplayConsoleService();
+            displayConsoleService.Start();
         }
     }
 }
